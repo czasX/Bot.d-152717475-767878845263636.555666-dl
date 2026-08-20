@@ -25,18 +25,9 @@ jobs:
           pip install discord.py requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Verify Token and Start Bot
+      - name: Start Bot Process
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          # Kiểm tra xem GitHub Secret 'TOKEN' đã được nhận chưa (ẩn ký tự bảo mật)
-          if [ -z "$TOKEN" ]; then
-            echo "Error: Biến TOKEN chưa được cấu hình trong GitHub Secrets!"
-            exit 1
-          else
-            echo "Token đã được tải thành công từ Secrets."
-          fi
-          
-          # Thực thi bot Python
           python3 RoleMembersAuto.py
           
